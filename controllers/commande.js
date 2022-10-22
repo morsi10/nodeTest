@@ -6,7 +6,7 @@ exports.createCommande = async (req, res, next) => {
     try {
         var total = 0;
         req.body.produits.forEach(function (idProduit) {
-
+           
             Produit.findById(idProduit).then((produit) => {
                 produit.quantite = produit.quantite - 1;
                 produit.save(produit);
@@ -14,14 +14,25 @@ exports.createCommande = async (req, res, next) => {
                 console.log("total" + total)
                 console.log("Prix" + produit.prix)
             });
+            
         });
+        console.log(total)
         const commande = new Commande({
             client: req.params.idClient,
             Produits: req.body.produits,
             prixTotal: total
         });
         commande.save().then((commande) => {
+
             res.send(commande);
+            // let affetctaion = Commande.findByIdAndUpdate(
+            //     commande._id, 
+            //     {
+            //       $push:{Produits: req.body.produits}
+            //     },
+            //     {new:true}
+            //   );
+             
         });
     } catch (error) {
         res.send(error);
