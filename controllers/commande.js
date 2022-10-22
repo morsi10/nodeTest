@@ -25,14 +25,6 @@ exports.createCommande = async (req, res, next) => {
         commande.save().then((commande) => {
 
             res.send(commande);
-            // let affetctaion = Commande.findByIdAndUpdate(
-            //     commande._id, 
-            //     {
-            //       $push:{Produits: req.body.produits}
-            //     },
-            //     {new:true}
-            //   );
-             
         });
     } catch (error) {
         res.send(error);

@@ -7,7 +7,7 @@ exports.register = async (req, res) => {
         prenom: req.body.prenom,
         email: req.body.email,
         password: req.body.password,
-        role: req.body.age,
+        role: req.body.role,
     });
     // generate salt to hash password
     const salt = await bcrypt.genSalt(10);

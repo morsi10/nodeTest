@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 const CommandeSchema = new mongoose.Schema({
     client : {
-        type: String
+        type: mongoose.Schema.Types.ObjectId ,
+        ref:'client'
     },
     
     Produits:[{
