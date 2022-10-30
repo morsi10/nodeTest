@@ -1,9 +1,10 @@
 const express = require('express');
 require('./database/connect');
+require('dotenv').config();
 const app = express();
 app.use(express.json());
 
-
+const passport = require('./passport-strategies/bearer');
 const client = require('./routes/client');
 const produit = require('./routes/produit');
 const commande = require('./routes/commande');

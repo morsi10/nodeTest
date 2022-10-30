@@ -19,12 +19,18 @@ exports.createCommande = async (req, res, next) => {
         console.log(total)
         const commande = new Commande({
             client: req.params.idClient,
-            Produits: req.body.produits,
+          
             prixTotal: total
         });
-        commande.save().then((commande) => {
-
-            res.send(commande);
+        commande.create().then(async (commande) => {
+            let commandeCreated = await commande.findByIdAndUpdate(
+                
+                {
+                  $push:{Produit:req.body.produits}
+                },
+                {new:true}
+              );
+            res.send(commandeCreated);
         });
     } catch (error) {
         res.send(error);

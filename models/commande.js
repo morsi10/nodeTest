@@ -3,15 +3,18 @@ const mongoose = require('mongoose');
 const CommandeSchema = new mongoose.Schema({
     client : {
         type: mongoose.Schema.Types.ObjectId ,
-        ref:'client'
+        ref:'client',
+        required: true
     },
     
     Produits:[{
         type: mongoose.Schema.Types.ObjectId ,
-        ref:'Produit'
+        ref:'Produit',
+        required: true
     }],
     prixTotal:{
-        type: Number
+        type: Number,
+        required: true
     }
     
 })
